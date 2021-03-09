@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ie.wit.apprestaurant.fragments.HomeFragment
-import ie.wit.apprestaurant.fragments.MenuFragment
-import ie.wit.apprestaurant.fragments.OrderFragment
-import ie.wit.apprestaurant.fragments.ReservationFragment
+import ie.wit.apprestaurant.fragments.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> navigateTo(HomeFragment.newInstance())
                 R.id.trend -> navigateTo(MenuFragment.newInstance())
-                R.id.account -> navigateTo(OrderFragment.newInstance())
+                R.id.account -> navigateTo(MapsFragment.newInstance())
                 R.id.setting -> navigateTo(ReservationFragment.newInstance())
 
             }
