@@ -1,4 +1,4 @@
-package ie.wit.apprestaurant.fragments
+package ie.wit.apprestaurant.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.apprestaurant.R
-import ie.wit.apprestaurant.adapters.ExampleAdapter
-import ie.wit.apprestaurant.adapters.ExampleItem
+import ie.wit.apprestaurant.adapters.MenuAdapter
 
 
 class MenuFragment : Fragment() {
@@ -28,16 +27,16 @@ class MenuFragment : Fragment() {
         val recycler_view : RecyclerView = view.findViewById(R.id.menu_recycler)
 
 
-        recycler_view.adapter = ExampleAdapter(menuList)
+        recycler_view.adapter = MenuAdapter(menuList)
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.setHasFixedSize(true)
         return view
     }
 
 
-    private fun generateDummyList(size: Int): List<ExampleItem> {
+    private fun generateDummyList(size: Int): List<MenuItem> {
 
-        val list = ArrayList<ExampleItem>()
+        val list = ArrayList<MenuItem>()
 
         for (i in 0 until size) {
             val drawable = when (i % 3) {
@@ -46,7 +45,11 @@ class MenuFragment : Fragment() {
                 else -> R.drawable.pizza
             }
 
-            val item = ExampleItem(drawable, "Order $i", "Click on me to order!")
+            val item = MenuItem(
+                drawable,
+                "Order $i",
+                "Click on me to order!"
+            )
             list += item
         }
 
