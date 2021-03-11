@@ -14,6 +14,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ie.wit.apprestaurant.R
 
+
+/**
+ * Maps fragment that has been generatet by Androidd Stuido
+ * Allows user to look around the map and see location of the "Restaurant"
+ */
+
 class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->

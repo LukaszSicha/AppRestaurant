@@ -10,6 +10,11 @@ import ie.wit.apprestaurant.R
 import ie.wit.apprestaurant.menu.MenuItem
 
 
+/**
+ * MenuAdapter which allows to display simple recycler view and all options
+ * that it is containing.
+ */
+
 class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.ExampleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
@@ -28,6 +33,10 @@ class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<M
     }
 
     override fun getItemCount() = menuList.size
+
+    /**
+     * Options in the adapter that are displayed to the user
+     */
 
     class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.image_view)

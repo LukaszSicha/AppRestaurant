@@ -1,6 +1,7 @@
 package ie.wit.apprestaurant.order
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,9 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import ie.wit.apprestaurant.R
+import ie.wit.apprestaurant.home.HomeFragment
+import ie.wit.apprestaurant.menu.MenuFragment
+import ie.wit.apprestaurant.order.ViewReservationFragment
 
 /**
  * Code learned from https://www.youtube.com/watch?v=5UEdyUFi_uQ
@@ -30,19 +34,31 @@ class OrderFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order, container, false)
-
         val saveRes : Button = view.findViewById(R.id.saveButton)
 
-        saveRes.setOnClickListener {
-            val inputFirstName : EditText = view.findViewById(R.id.inputFirstName)
-            val inputLastName : EditText = view.findViewById(R.id.inputLastName)
-            val date : EditText = view.findViewById(R.id.date)
-            val amountofpoeple : EditText = view.findViewById(R.id.amountofpeople)
 
-            saveFireStore(inputFirstName.text.toString(),inputLastName.text.toString(), date.text.toString(), amountofpoeple.text.toString())
+
+        saveRes.setOnClickListener {
+            val firstname : EditText = view.findViewById(R.id.inputFirstName)
+            val lastname : EditText = view.findViewById(R.id.inputLastName)
+            val date : EditText = view.findViewById(R.id.date)
+            val numberpeople : EditText = view.findViewById(R.id.amountofpeople)
+
+            saveFireStore(firstname.text.toString(),lastname.text.toString(), date.text.toString(), numberpeople.text.toString())
         }
+
+        val resButton : Button = view.findViewById(R.id.res_button)
+        resButton.setVisibility(View.VISIBLE)
+        resButton.setOnClickListener {
+            Log.d("TAG", "Error")
+            fragmentManager?.beginTransaction()?.replace(R.id.orderView, ViewReservationFragment())?.addToBackStack(null)?.commit()
+            resButton.setVisibility(View.GONE)
+            saveRes.setVisibility(View.GONE)
+        }
+
         return view
     }
+
 
     fun saveFireStore(inputFirstName: String, inputLastName: String, date: String, amountofpoeple: String) {
         val db = FirebaseFirestore.getInstance()
@@ -54,12 +70,13 @@ class OrderFragment : Fragment() {
 
         db.collection("users").add(user)
             .addOnSuccessListener {
-                println("Record ADDED")
+                Toast.makeText(activity, "Your reservation has been added!", Toast.LENGTH_LONG).show()
             }
             .addOnFailureListener {
-                println("Record Wrong")
+                Toast.makeText(activity, "Something went wrong! Try again", Toast.LENGTH_LONG).show()
             }
     }
+
 
     companion object {
         fun newInstance() =

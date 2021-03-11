@@ -11,6 +11,10 @@ import ie.wit.apprestaurant.R
 import ie.wit.apprestaurant.adapters.MenuAdapter
 
 
+/**
+ * MenuFragment that uses MenuAdapter and allows to look through menu
+ */
+
 class MenuFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +37,10 @@ class MenuFragment : Fragment() {
         return view
     }
 
-
+    /**
+     * DummyList of the menu, allows us to change how many items are displayed and what pictures
+     * we want to use for it.
+     */
     private fun generateDummyList(size: Int): List<MenuItem> {
 
         val list = ArrayList<MenuItem>()

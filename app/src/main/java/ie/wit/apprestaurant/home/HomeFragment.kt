@@ -9,7 +9,9 @@ import ie.wit.apprestaurant.R
 import ie.wit.apprestaurant.main.AppRestaurant
 
 
-
+/**
+ * Main Fragment that allows user to see description of the application
+ */
 
 class HomeFragment : Fragment() {
 

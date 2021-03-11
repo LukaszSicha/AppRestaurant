@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="56dp"
-        android:text="Welocem, in this app you are able to:"
+        android:text="Welcome, in this app you are able to:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
