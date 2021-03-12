@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firestore.v1.StructuredQuery
 import ie.wit.apprestaurant.R
 import ie.wit.apprestaurant.home.HomeFragment
 import ie.wit.apprestaurant.menu.MenuFragment
@@ -37,7 +38,6 @@ class OrderFragment : Fragment() {
         val saveRes : Button = view.findViewById(R.id.saveButton)
 
 
-
         saveRes.setOnClickListener {
             val firstname : EditText = view.findViewById(R.id.inputFirstName)
             val lastname : EditText = view.findViewById(R.id.inputLastName)
@@ -48,18 +48,27 @@ class OrderFragment : Fragment() {
         }
 
         val resButton : Button = view.findViewById(R.id.res_button)
+
+
         resButton.setVisibility(View.VISIBLE)
+
         resButton.setOnClickListener {
             Log.d("TAG", "Error")
             fragmentManager?.beginTransaction()?.replace(R.id.orderView, ViewReservationFragment())?.addToBackStack(null)?.commit()
             resButton.setVisibility(View.GONE)
             saveRes.setVisibility(View.GONE)
-        }
 
+        }
         return view
     }
 
+    // https://www.youtube.com/watch?v=sZ8D1-hNeWo
+    // https://www.youtube.com/watch?v=5UEdyUFi_uQ
 
+    /**
+     * Allows user to save his inputs from the fragment, which then they are poassed
+     * to db(firedatabase cloud) and saved as collection in document
+     */
     fun saveFireStore(inputFirstName: String, inputLastName: String, date: String, amountofpoeple: String) {
         val db = FirebaseFirestore.getInstance()
         val user: MutableMap<String, Any> = HashMap()
@@ -68,6 +77,8 @@ class OrderFragment : Fragment() {
         user["date"] = date
         user["amountofpoeple"] = amountofpoeple
 
+
+        //Specific firebase collection where collection and documents are stored
         db.collection("users").add(user)
             .addOnSuccessListener {
                 Toast.makeText(activity, "Your reservation has been added!", Toast.LENGTH_LONG).show()

@@ -24,6 +24,7 @@ class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
 
+        // We are able to edit lane 28 to change location using google maps HTML bar
         val ireland = LatLng(52.16, -7.15)
         googleMap.addMarker(MarkerOptions().position(ireland).title("Our location!"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(ireland))

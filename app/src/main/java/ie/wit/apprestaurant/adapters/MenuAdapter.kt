@@ -15,16 +15,20 @@ import ie.wit.apprestaurant.menu.MenuItem
  * that it is containing.
  */
 
-class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.ExampleViewHolder>() {
+class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.example_item,
             parent, false)
 
-        return ExampleViewHolder(itemView)
+        return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
+    /**
+     * Displays all the items
+     */
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = menuList[position]
 
         holder.imageView.setImageResource(currentItem.imageResource)
@@ -38,7 +42,7 @@ class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<M
      * Options in the adapter that are displayed to the user
      */
 
-    class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.image_view)
         val textView1: TextView = itemView.findViewById(R.id.text_view_1)
         val textView2: TextView = itemView.findViewById(R.id.text_view_2)

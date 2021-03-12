@@ -14,11 +14,14 @@ import ie.wit.apprestaurant.order.OrderFragment
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // https://www.youtube.com/watch?v=rIHArmoq9f8
+        setTheme(R.style.splashScreenTheme)
         setContentView(R.layout.activity_main)
 
         val navView: BottomNavigationView = findViewById(R.id.bottomNav)
-        navigateTo(HomeFragment.newInstance())
+        navigateTo(HomeFragment.newInstance()) //set main fragment to view after splashscreen
 
+        //Navigation menu that allows user to navigate bottom menu
         navView.setOnNavigationItemReselectedListener {item ->
             when (item.itemId) {
                 R.id.home -> navigateTo(HomeFragment.newInstance())

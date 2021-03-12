@@ -25,7 +25,7 @@ class MenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val menuList = generateDummyList(30)
+        val menuList = MenuListView(30)
 
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
         val recycler_view : RecyclerView = view.findViewById(R.id.menu_recycler)
@@ -37,11 +37,12 @@ class MenuFragment : Fragment() {
         return view
     }
 
+// https://www.youtube.com/watch?v=6Gm3eMG8KqI
     /**
-     * DummyList of the menu, allows us to change how many items are displayed and what pictures
+     * List of the menu, allows us to change how many items are displayed and what pictures
      * we want to use for it.
      */
-    private fun generateDummyList(size: Int): List<MenuItem> {
+    private fun MenuListView(size: Int): List<MenuItem> {
 
         val list = ArrayList<MenuItem>()
 
@@ -52,9 +53,11 @@ class MenuFragment : Fragment() {
                 else -> R.drawable.pizza
             }
 
+            // Lopp that takes information from lane 28 and then generates number of items
+            // with specific text and $i (which stands for number)
             val item = MenuItem(
                 drawable,
-                "Order $i",
+                "Order",
                 "Click on me to order!"
             )
             list += item

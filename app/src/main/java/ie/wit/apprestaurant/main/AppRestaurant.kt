@@ -7,6 +7,5 @@ class AppRestaurant : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.v("Donate","Donation App started")
     }
 }

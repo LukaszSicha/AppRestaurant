@@ -24,6 +24,7 @@ class ViewReservationAdapter (private val reservationList: ArrayList<Reservation
         return ReservationViewHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
         val currentItem = reservationList[position]
 
